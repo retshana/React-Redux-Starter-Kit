@@ -2,7 +2,7 @@
 Basic project structure for react-redux app development
 
 # How to run
-1. `git clone https://github.com/CheerfulYeti/React-Redux-Starter-Kit.git`
+1. `git clone https://github.com/retshana/React-Redux-Starter-Kit.git`
 2. `npm i`
 3. `npm start`
 

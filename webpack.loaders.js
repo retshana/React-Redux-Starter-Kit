@@ -1,10 +1,10 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = [
   {
     test: /\.(jsx|js)?$/,
     exclude: /node_modules/,
-    use: [
-      'babel-loader',
-    ],
+    loaders: [ 'happypack/loader' ],
   },
   {
     test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$/,
@@ -39,5 +39,15 @@ module.exports = [
         loader: 'sass-loader', // compiles Sass to CSS
       },
     ],
+  },
+  {
+    test:/\.(css)$/,
+    use: ExtractTextPlugin.extract({
+      use: [
+        {
+          loader: 'css-loader'
+        },
+      ],
+    })
   },
 ];

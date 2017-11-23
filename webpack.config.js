@@ -6,6 +6,8 @@ const pathList = require('./pathList');
 const loaders = require('./webpack.loaders');
 const constants = require('./webpack.constants');
 const eslintPlugin = require('./webpack.eslint');
+const HappyPack = require('happypack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -19,6 +21,11 @@ const plugins = [
   new HtmlWebpackPlugin({
     template: './static/index.html',
   }),
+  new HappyPack({
+    // 3) re-add the loaders you replaced above in #1:
+    loaders: [ 'babel-loader' ]
+  }),
+  new ExtractTextPlugin('styles.css', {allChunks: true}),
 ];
 
 if (eslintPlugin) {
@@ -30,6 +37,7 @@ module.exports = {
   entry: {
     app: [
       'babel-polyfill',
+      'react-hot-loader/patch',
       `${pathList.src}/index.jsx`,
     ],
     vendor: [
